@@ -16,7 +16,8 @@
         "development": {
           "args": ["--node-env=development"]
         }
-      }
+      },
+      "dependsOn": ["generate-prisma"]
     },
     "prune-lockfile": {
       "dependsOn": ["build"],
@@ -64,6 +65,19 @@
     "test": {
       "options": {
         "passWithNoTests": true
+      },
+      "dependsOn": ["generate-prisma"]
+    },
+    "generate-prisma": {
+      "command": "prisma generate",
+      "options": {
+        "cwd": "apps/jobber-auth"
+      }
+    },
+    "migrate-prisma": {
+      "command": "prisma migrate",
+      "options": {
+        "cwd": "apps/jobber-auth"
       }
     }
   }
